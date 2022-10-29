@@ -23,17 +23,106 @@ public class Main {
 	private static ArrayList<Tile> setTiles(String path, String ext) {
 		ArrayList<Tile> images = new ArrayList<Tile>();
 		try {
-			int[][] v1 = new int[][] {{}};
-			int[][] v2 = new int[][] {{}};
-			int[][] v3 = new int[][] {{}};
-			int[][] v4 = new int[][] {{}};
-			int[][] v5 = new int[][] {{}};
+			Piece[][] up = new Piece[][] {
+				{
+					Piece.DOWN,
+					Piece.RIGHT,
+					Piece.LEFT
+				},
+				{
+					Piece.DOWN,
+					Piece.BLANK
+				},
+				{
+					Piece.LEFT,
+					Piece.DOWN
+				},
+				{
+					Piece.DOWN,
+					Piece.RIGHT
+				}
+			};
 
-			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), v1, Piece.UP));
-			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), v2, Piece.DOWN));
-			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), v3, Piece.LEFT));
-			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), v4, Piece.RIGHT));
-			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), v5, Piece.BLANK));
+			Piece[][] down = new Piece[][] {
+				{
+					Piece.BLANK,
+					Piece.UP
+				},
+				{
+					Piece.BLANK,
+					Piece.LEFT,
+					Piece.UP
+				},
+				{
+					Piece.LEFT,
+					Piece.UP
+				},
+				{
+					Piece.RIGHT,
+					Piece.UP
+				}
+			};
+
+			Piece[][] right = new Piece[][] {
+				{
+					Piece.LEFT,
+					Piece.DOWN
+				},
+				{
+					Piece.LEFT,
+					Piece.UP
+				},
+				{
+					Piece.UP,
+					Piece.LEFT,
+					Piece.DOWN
+				},
+				{
+					Piece.BLANK,
+					Piece.LEFT
+				}
+			};
+
+			Piece[][] left = new Piece[][] {
+				{
+					Piece.DOWN,
+					Piece.RIGHT
+				},
+				{
+					Piece.RIGHT,
+					Piece.UP
+				},
+				{
+					Piece.BLANK,
+					Piece.RIGHT
+				},
+				{
+					Piece.RIGHT,
+					Piece.DOWN,
+					Piece.UP
+				}
+			};
+
+			Piece[][] blank = new Piece[][] {
+				{
+					Piece.UP
+				},
+				{
+					Piece.DOWN
+				},
+				{
+					Piece.RIGHT
+				},
+				{
+					Piece.LEFT
+				}
+			};
+
+			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), up, Piece.UP));
+			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), down, Piece.DOWN));
+			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), right, Piece.RIGHT));
+			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), left, Piece.LEFT));
+			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), blank, Piece.BLANK));
 		}
 		catch(IOException e) {
 			e.printStackTrace();
