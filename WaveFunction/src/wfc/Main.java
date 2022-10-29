@@ -13,10 +13,11 @@ public class Main {
 
 	private static final String RESOURCES = "resources/";
 	private static final String FILE_EXT  = ".png";
+	private static final int WINDOW_SIZE  = 500;
 	public static void main(String[] args) {
 
 		ArrayList<Tile> images = setTiles(RESOURCES, FILE_EXT);
-		WaveFunction wfc = new WaveFunction(images);
+		WaveFunction wfc = new WaveFunction(images, WINDOW_SIZE);
 		wfc.waveFunction();
 	}
 
