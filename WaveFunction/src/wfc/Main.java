@@ -10,22 +10,21 @@ import javax.imageio.ImageIO;
 public class Main {
 
 	private static final String FILE_EXT  = ".png";
-	private static final int WINDOW_SIZE  = 149;
+	private static final int WINDOW_SIZE  = 100;
+	private static final int TILE_SIZE    = 50;
 	public static void main(String[] args) {
 		String resources = "C://Users//Hailey//Desktop//David Code//wfc//Wave-Function-Collapse//WaveFunction//resources//"; 
 		String outputResources = "C://Users//Hailey//Desktop//David Code//wfc//Wave-Function-Collapse//WaveFunction//output_resources//";;
 		ArrayList<Tile> images = setTiles(resources, FILE_EXT);
-		WaveFunction wfc = new WaveFunction(images, WINDOW_SIZE, 50);
+		WaveFunction wfc = new WaveFunction(images, WINDOW_SIZE, TILE_SIZE);
 		try {
 			File output = new File(outputResources +"test.png");
-			BufferedImage img = wfc.waveFunction();
+			BufferedImage img = wfc.createWFCImage();
 			ImageIO.write(img, "png", output);
 			System.out.println("Done.");
 		}
 
 		catch(IOException e) { e.printStackTrace(); }
-
-		System.out.println((int) 7/2);
 	}
 
 	private static ArrayList<Tile> setTiles(String path, String ext) {
