@@ -7,28 +7,23 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import wfc.Tile.Piece;
-
 public class Main {
 
-	private static final String RESOURCES = "C:/Users/daveb/Desktop/WaveFunctionCollapse/Wave-Function-Collapse/WaveFunction/resources/";
-	private static final String OUTPUT_RESOURCES = "C:/Users/daveb/Desktop/WaveFunctionCollapse/Wave-Function-Collapse/WaveFunction/output_resources/";
 	private static final String FILE_EXT  = ".png";
-	private static final int WINDOW_SIZE  = 500;
+	private static final int WINDOW_SIZE  = 149;
 	public static void main(String[] args) {
-
-		/*ArrayList<Tile> images = setTiles(RESOURCES, FILE_EXT);
+		String resources = "C://Users//Hailey//Desktop//David Code//wfc//Wave-Function-Collapse//WaveFunction//resources//"; 
+		String outputResources = "C://Users//Hailey//Desktop//David Code//wfc//Wave-Function-Collapse//WaveFunction//output_resources//";;
+		ArrayList<Tile> images = setTiles(resources, FILE_EXT);
 		WaveFunction wfc = new WaveFunction(images, WINDOW_SIZE, 50);
 		try {
-			File output = new File(OUTPUT_RESOURCES +"test.png");
+			File output = new File(outputResources +"test.png");
 			BufferedImage img = wfc.waveFunction();
 			ImageIO.write(img, "png", output);
 			System.out.println("Done.");
-
-			
 		}
 
-		catch(IOException e) { e.printStackTrace(); }*/
+		catch(IOException e) { e.printStackTrace(); }
 
 		System.out.println((int) 7/2);
 	}
@@ -131,11 +126,11 @@ public class Main {
 				}
 			};
 
-			images.add(new Tile(ImageIO.read(new File(RESOURCES + "up.png")),    up,     Piece.UP   ));
-			images.add(new Tile(ImageIO.read(new File(RESOURCES + "down.png")),  down,   Piece.DOWN ));
-			images.add(new Tile(ImageIO.read(new File(RESOURCES + "right.png")), right,  Piece.RIGHT));
-			images.add(new Tile(ImageIO.read(new File(RESOURCES + "left.png")),  left,   Piece.LEFT ));
-			images.add(new Tile(ImageIO.read(new File(RESOURCES + "blank.png")), blank,  Piece.BLANK));
+			images.add(new Tile(ImageIO.read(new File(path + "up.png")),    up,     Piece.UP   ));
+			images.add(new Tile(ImageIO.read(new File(path + "down.png")),  down,   Piece.DOWN ));
+			images.add(new Tile(ImageIO.read(new File(path + "right.png")), right,  Piece.RIGHT));
+			images.add(new Tile(ImageIO.read(new File(path + "left.png")),  left,   Piece.LEFT ));
+			images.add(new Tile(ImageIO.read(new File(path + "blank.png")), blank,  Piece.BLANK));
 		}
 		catch(IOException e) {
 			e.printStackTrace();

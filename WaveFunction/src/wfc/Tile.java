@@ -25,11 +25,4 @@ public class Tile {
         return piece;
     }
 
-    public enum Piece {
-        BLANK,
-        UP,
-        DOWN,
-        RIGHT,
-        LEFT;
-    }
 }

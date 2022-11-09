@@ -1,81 +1,70 @@
 package wfc;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Random.*;
-
-import javax.naming.ldap.StartTlsRequest;
 
 public class WaveFunction {
     
     private ArrayList<Tile> tiles;
     private int imageSize;
+    private int squareSize;
     private Tile[][] grid;
 
     public WaveFunction(ArrayList<Tile> tiles, int imageSize, int squareSize) {
         this.tiles = tiles;
         this.imageSize = imageSize;
+        this.squareSize = squareSize;
         this.grid = new Tile[squareSize][squareSize];
     }
 
     public BufferedImage waveFunction() {
-		BufferedImage img = new BufferedImage(imageSize, imageSize, BufferedImage.TYPE_INT_RGB);
-        int startX = 0;
-        int startY = 0;
-        int tileX  = 0;
-        int tileY  = 0;
-        int initY  = 0;
-        int endX   = 50;
-        int endY   = 50;
-        int i = 0;
+		BufferedImage img = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
         BufferedImage tmp = null;
         Random rand = new Random();
-        while(i < 10) {
+        rand.setSeed(1000);
+        
+        int imageCount = 0;
+        int x=0,y=0;
+        int endX = 50, endY = 50;
+        int currYStart = 0;
+        int currXStart = 0;
+        int tileX = 0;
+        int tileY = 0;
+        
+        while(imageCount < Math.pow((img.getWidth() / squareSize),2)) {
             tmp = tiles.get(rand.nextInt(tiles.size()-0) + 0).getTileImage();
-            while(startX < endX) {
-                while(startY < endY) {
-                    //System.out.println("x:" +startX +" y: " +startY + " = tx: " +tileX +" ty: "+tileY +" eX: " +endX +" eY: " +endY);
-                    int rgb = 0;
-                    try {
-                        if(tileY == 50)  { 
-                            break; 
-                        }
-                        rgb = tmp.getRGB(tileX, tileY);
-                    }
-                    catch(ArrayIndexOutOfBoundsException e) {
-                        System.out.println("TileX: " + tileX + " TileY: " + tileY);
-                        //rgb = tmp.getRGB(tileX, tileY);
-                    }
-                    
-                    img.setRGB(startX, startY, rgb);
-                    startY++;
+            while(x < endX) {
+                while(y < endY) {
+                    img.setRGB(x , y, tmp.getRGB(tileX, tileY));
+                    y++;
                     tileY++;
                 }
-                tileY  = 0;
+                x++;
                 tileX++;
-                startY = initY;
-                startX++;
-
+                tileY = 0;
+                y = currYStart;
             }
 
-            if(startX < img.getWidth()) {
-                startX = endX;
-                startY = 0;
-                endX += 50; 
+            if(x >= img.getWidth()) {
+                x = currXStart;
+                currYStart += 50;
+                endY       += 50;
+                endX = 50;
+                y = currYStart;
+                tileX = 0;
+                tileY = 0;
             }
+
             else {
-                startY = endY;
-                initY  = endY;
-                endY  += 50;
-                endX   = 50;
-                startX = 0;
+                x = endX;
+                endX += 50;
+                y = currYStart;
+                tileX = 0;
+                tileY = 0;
             }
 
-            tileX  = 0;
-            tileY  = 0;
-            i++;
+            imageCount++;
         }
 
         return img;
