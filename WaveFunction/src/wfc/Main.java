@@ -120,10 +120,10 @@ public class Main {
 			};
 
 			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), up, Piece.UP));
-			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), down, Piece.DOWN));
-			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), right, Piece.RIGHT));
-			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), left, Piece.LEFT));
-			images.add(new Tile(ImageIO.read(new File(path +"up" +ext)), blank, Piece.BLANK));
+			images.add(new Tile(ImageIO.read(new File(path +"down" +ext)), down, Piece.DOWN));
+			images.add(new Tile(ImageIO.read(new File(path +"right"+ext)), right, Piece.RIGHT));
+			images.add(new Tile(ImageIO.read(new File(path +"left" +ext)), left, Piece.LEFT));
+			images.add(new Tile(ImageIO.read(new File(path +"blank" +ext)), blank, Piece.BLANK));
 		}
 		catch(IOException e) {
 			e.printStackTrace();
