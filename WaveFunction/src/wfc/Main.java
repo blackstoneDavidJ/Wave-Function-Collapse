@@ -7,18 +7,25 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import wfc.Tile.Piece;
-
 public class Main {
 
-	private static final String RESOURCES = "resources/";
 	private static final String FILE_EXT  = ".png";
-	private static final int WINDOW_SIZE  = 500;
+	private static final int WINDOW_SIZE  = 149;
 	public static void main(String[] args) {
+		String resources = "C://Users//David//Desktop//WaveFunctionCollapse//Wave-Function-Collapse//WaveFunction//resources//";
+		//String resources = "C://Users//Hailey//Desktop//David Code//wfc//Wave-Function-Collapse//WaveFunction//resources//";
+		String outputResources = "C://Users//David//Desktop//WaveFunctionCollapse//Wave-Function-Collapse//WaveFunction//output_resources//"; 
+		//String outputResources = "C://Users//Hailey//Desktop//David Code//wfc//Wave-Function-Collapse//WaveFunction//output_resources//";;
+		ArrayList<Tile> images = setTiles(resources, FILE_EXT);
+		WaveFunction wfc = new WaveFunction(images, WINDOW_SIZE, 50);
+		try {
+			File output = new File(outputResources +"test.png");
+			BufferedImage img = wfc.waveFunction();
+			ImageIO.write(img, "png", output);
+			System.out.println("Done.");
+		}
 
-		ArrayList<Tile> images = setTiles(RESOURCES, FILE_EXT);
-		WaveFunction wfc = new WaveFunction(images, WINDOW_SIZE);
-		wfc.waveFunction();
+		catch(IOException e) { e.printStackTrace(); }
 	}
 
 	private static ArrayList<Tile> setTiles(String path, String ext) {
